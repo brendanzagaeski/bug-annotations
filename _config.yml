@@ -5,6 +5,8 @@ exclude:
     - "README.md"
     - "LICENSE.md"
 
+baseurl: "http://brendanzagaeski.github.io/bug-annotations/"
+
 #defaults:
 #    - scope:
 #        path: ""
