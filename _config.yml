@@ -1,0 +1,13 @@
+collections:
+    - bugs
+
+exclude:
+    - "README.md"
+    - "LICENSE.md"
+
+#defaults:
+#    - scope:
+#        path: ""
+#        type: my_collection
+#    values:
+#        layout: bug
