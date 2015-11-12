@@ -1,0 +1,8 @@
+    <colgroup>
+        <col span="1" style="width: 5%" />
+        <col span="1" style="width: 8%" />
+        <col span="1" style="width: 60%" />
+        <col span="1" style="width: 8%" />
+    </colgroup>{% assign columns = "Bug, Products, Summary, Broken Since, Fix Released?" | split: ", " %}
+    <tr>{% for column in columns %}<td>{{ column }}</td>{% endfor %}</tr>
+    <tr class="filters">{% capture trash %}{% increment i %}{% endcapture %}{% for column in columns %}<td>Filter <input type="text" name="{{ column }}" tabindex="{% increment i %}" /> <button class="clear">Clear All</button></td>{% endfor %}</tr>

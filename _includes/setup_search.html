@@ -1,0 +1,30 @@
+<script>
+$("input").keypress (function (event) {
+    if (event.which == 13) {
+        filter ();
+    }
+});
+$(".clear").click(function () {
+    $("input").val("");
+    $("tr").show ();
+});
+var filter = function () {
+    $("tr").slice (2).each (function (index) {
+        var row = this;
+        var hide = false;
+        $("input").each (function (index) {
+            var input = this;
+            if (input.value == "") {
+                return;
+            }
+            var cell = $(row).children ("td")[$(input).parent ().index ()];
+            if ($(cell).text ().toUpperCase ().indexOf (input.value.toUpperCase ()) < 0) {
+                hide = true;
+                return false;
+            }
+        });
+        if (hide) { $(row).hide (); }
+        else { $(row).show (); }
+    })
+}
+</script>

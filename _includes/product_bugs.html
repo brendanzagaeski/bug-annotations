@@ -1,0 +1,4 @@
+<table>
+{% include bug_header_row.html %}{% for bug in site.bugs reversed %}{% for tag in bug.tags %}{% if tag == product %}{% include bug_row.html %}{% endif %}{% endfor %}{% endfor %}
+</table>
+{% include setup_search.html %}

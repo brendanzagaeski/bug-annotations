@@ -1,7 +1,33 @@
-table td { 
-  padding: 2ex 0.5em;
-  border: 2px solid #ddd;
+table {
+    width: 100%;
 }
-ul {
-  padding-left: 1em;
+
+table input {
+    width: 100%;
+}
+
+input + button {
+    margin-top: 1ex;
+}
+
+table td { 
+    padding: 2ex 0.5em;
+}
+
+tr td {
+    text-align: center;
+    border: 2px solid #ddd;
+}
+
+tr + tr + tr td {
+    text-align: inherit;
+}
+
+td ul {
+    padding-left: 1em;
+}
+
+body > ul > li {
+    font-size: x-large;
+    margin-top: 2ex;
 }

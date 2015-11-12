@@ -4,8 +4,9 @@ collections:
 exclude:
     - "README.md"
     - "LICENSE.md"
+    - "bugs/_template.md"
 
-baseurl: "http://brendanzagaeski.github.io/bug-annotations/"
+baseurl: "/bug-annotations"
 
 #defaults:
 #    - scope:
