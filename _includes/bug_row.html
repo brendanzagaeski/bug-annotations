@@ -7,5 +7,6 @@
         </td>
         <td>{{ bug.summary | append: " " | markdownify | rstrip }}{{ bug.workaround | prepend: " " | markdownify | rstrip }}</td>
         <td>{{ bug.broken-since | append: " " | markdownify | rstrip }}</td>
-        <td>{{ bug.fix | append: " " | markdownify | rstrip }}{% assign milestone = site.data.target-milestones[bug.target-milestone] | prepend:" " | rstrip %}{{ site.data.statuses[bug.status] | append: milestone | markdownify }}</td>
+        {% assign channels = "stable beta alpha" | split:" " %}{% for channel in channels %}{% if bug.fixed-on[channel] %}<td>X</td>{% else %}<td></td>{% endif %}{% endfor %}
+        <td>{% capture releasedNotice %}{% for channel in channels %}{% if bug.fixed-on[channel] %}**RELEASED** to the {{ channel | capitalize }} Channel.{% break %}{% endif %}{% endfor %}{% endcapture %}{{ releasedNotice | append: " " | append: bug.fix | rstrip | append: " " | markdownify | rstrip }}{% assign milestone = site.data.target-milestones[bug.target-milestone] | prepend:" " | rstrip %}{{ site.data.statuses[bug.status] | append: milestone | markdownify }}</td>
     </tr>

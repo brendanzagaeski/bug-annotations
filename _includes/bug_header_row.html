@@ -1,8 +1,11 @@
     <colgroup>
         <col span="1" style="width: 5%" />
         <col span="1" style="width: 8%" />
-        <col span="1" style="width: 60%" />
+        <col span="1" style="width: 50%" />
         <col span="1" style="width: 8%" />
-    </colgroup>{% assign columns = "Bug, Products, Summary, Broken Since, Fix Released?" | split: ", " %}
+        <col span="1" style="width: 3%" />
+        <col span="1" style="width: 3%" />
+        <col span="1" style="width: 3%" />
+    </colgroup>{% assign columns = "Bug, Products, Summary, Broken Since, Fixed on Stable, Fixed on Beta, Fixed on Alpha, Additional Status" | split: ", " %}
     <tr>{% for column in columns %}<td>{{ column }}</td>{% endfor %}</tr>
-    <tr class="filters">{% capture trash %}{% increment i %}{% endcapture %}{% for column in columns %}<td>Filter <input type="text" name="{{ column }}" tabindex="{% increment i %}" /> <button class="clear">Clear All</button></td>{% endfor %}</tr>
+    <tr class="filters">{% capture trash %}{% increment i %}{% endcapture %}{% for column in columns %}<td>{% if column contains "Fixed on" %}<select name="{{ column }}"><option selected="true" value="all">All</option><option value="fixed">Fixed</option><option value="open">Open</option></select>{% else %}Filter <input type="text" name="{{ column }}" tabindex="{% increment i %}" /> <button class="clear">Clear All</button>{% endif %}</td>{% endfor %}</tr>

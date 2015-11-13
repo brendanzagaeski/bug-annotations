@@ -1,5 +1,12 @@
+## Note: apart from the "combined name" for the release like "Cycle 6," this
+## information could be obtained directly from the current updater service
 "iOS 9.1":
+    stable-date: !!timestamp 2015-10-28
     iOS: "XI 9.1 (iOS 9.1)"
+"iOS 9.1 WatchKit Hotfix":
+    stable-date: !!timestamp 2015-11-10
+    iOS: "9.1.0.31"
 "Cycle 6":
+    beta-date: !!timestamp 2015-11-11
     "Xamarin Studio": "5.10"
     "Visual Studio Extensions": "4.0 (C6)"

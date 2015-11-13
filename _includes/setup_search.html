@@ -1,30 +1,52 @@
 <script>
 $("input").keypress (function (event) {
     if (event.which == 13) {
-        filter ();
+        filterRows ();
     }
 });
 $(".clear").click(function () {
-    $("input").val("");
+    $("input").val ("");
+    $("select").prop ("selectedIndex", 0)
     $("tr").show ();
 });
-var filter = function () {
+$("select").change (function () {
+    filterRows ();
+});
+
+var filterRows = function () {
     $("tr").slice (2).each (function (index) {
         var row = this;
         var hide = false;
-        $("input").each (function (index) {
-            var input = this;
-            if (input.value == "") {
-                return;
+        $(row).children ("td").each (function (index) {
+            var cell = this;
+            var bugFilter = ($($("tr.filters").children ("td") [index]).children ().filter ("input, select")) [0];
+            if ($(bugFilter).is ('input')) {
+                if (bugFilter.value == "") {
+                    return;
+                }
+                var re = new RegExp (bugFilter.value, "i");
+                if (!re.test ($(cell).text ())) {
+                    hide = true;
+                    return false;
+                }
             }
-            var cell = $(row).children ("td")[$(input).parent ().index ()];
-            if ($(cell).text ().toUpperCase ().indexOf (input.value.toUpperCase ()) < 0) {
-                hide = true;
-                return false;
+            else {
+                if (bugFilter.value == "all") {
+                    return;
+                }
+                var released = $(cell).text ().indexOf ("X") > -1;
+                if (bugFilter.value == "fixed" && !released) {
+                    hide = true;
+                    return false;
+                }
+                if (bugFilter.value == "open" && released) {
+                    hide = true;
+                    return false;
+                }
             }
         });
         if (hide) { $(row).hide (); }
         else { $(row).show (); }
     })
-}
+};
 </script>

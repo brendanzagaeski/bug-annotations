@@ -10,6 +10,7 @@ broken-since:
 product: Xamarin Studio
 version: "5.10"
 fix: ""
+released-version: ""
 workaround: ""
 regression: true
 status: RESOLVED FIXED
