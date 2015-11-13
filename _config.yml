@@ -6,7 +6,7 @@ exclude:
     - "LICENSE.md"
     - "bugs/_template.md"
 
-baseurl: "/bug-annotations"
+baseurl: ""
 
 kramdown:
     smart_quotes: ["apos", "apos", "quot", "quot"]
