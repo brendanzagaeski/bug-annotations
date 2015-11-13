@@ -31,3 +31,5 @@ body > ul > li {
     font-size: x-large;
     margin-top: 2ex;
 }
+
+p.footer { margin-top: 10em }

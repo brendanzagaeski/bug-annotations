@@ -1,0 +1,1 @@
+{% assign characters = input | split: "" %}{% for character in characters %}{% if forloop.index0 > 2 %}{% break %}{% endif %}{{ character }}{% endfor %}

@@ -8,3 +8,6 @@ layout: basic
 - [Xamarin Studio Issues](xs/)
 - [Xamarin.Android Issues](android/)
 - [Xamarin.iOS Issues](ios/)
+
+
+<p class="footer">(For Xamarins: see the <a href="https://github.com/brendanzagaeski/bug-annotations/blob/gh-pages/README.md">README</a> about how to add another bug.)</p>

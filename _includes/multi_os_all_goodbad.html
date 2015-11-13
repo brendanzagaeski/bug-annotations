@@ -1,0 +1,1 @@
+{% assign systems = "Windows, Mac OS" | split: ", " %}{% for opSys in systems %}{% capture output %}{% include multi_os_single_goodbad.html %}{% endcapture %}{{ output | strip_newlines }}{% endfor %}
