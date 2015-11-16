@@ -1,31 +1,38 @@
 table {
     width: 100%;
+    table-layout: fixed;
 }
 
-table input {
-    width: 100%;
-}
+    td {
+        padding: 1em 1ex;
+        border: 2px solid #ddd;
+        overflow: hidden;
 
-input + button {
-    margin-top: 1ex;
-}
+        text-align: center;
+    }
 
-table td { 
-    padding: 2ex 0.5em;
-}
+    tr + tr + tr td {
+        /* Reset the alignment after row 3 so that only the first 2 rows are
+         * centered */
+        text-align: inherit;
+    }
 
-tr td {
-    text-align: center;
-    border: 2px solid #ddd;
-}
+        td ul {
+            padding-left: 1em;
+        }
 
-tr + tr + tr td {
-    text-align: inherit;
-}
+        td input {
+            width: 100%;
+        }
 
-td ul {
-    padding-left: 1em;
-}
+        td select {
+            width: 100%;
+        }
+
+        td button {
+            margin-top: 1ex;
+            white-space: nowrap;
+        }
 
 body > ul > li {
     font-size: x-large;
