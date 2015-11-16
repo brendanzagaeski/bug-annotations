@@ -5,9 +5,9 @@ $("input").keypress (function (event) {
     }
 });
 $(".clear").click(function () {
-    $("input").val ("");
-    $("select").prop ("selectedIndex", 0)
-    $("tr").show ();
+    $(this).closest ("td").children ("input").val ("");
+    $(this).closest ("td").children ("select").prop ("selectedIndex", 0);
+    filterRows ();
 });
 $("select").change (function () {
     filterRows ();
@@ -25,7 +25,7 @@ var filterRows = function () {
                     return;
                 }
                 var re = new RegExp (bugFilter.value, "i");
-                if (!re.test ($(cell).text ())) {
+                if (!re.test ($.trim($(cell).text ()))) {
                     hide = true;
                     return false;
                 }
