@@ -1,9 +1,14 @@
 ## Note: apart from the "combined name" for the release like "Cycle 6," this
 ## information could be obtained directly from the current updater service
+"NA":
+   "Visual Studio Extensions": N/A
+newFeature:
+   "Visual Studio Extensions": "N/A, new feature"
 "iOS 9.0 – Service Release 1 Stable":
     url: https://releases.xamarin.com/stable-release-ios-9-support-service-release-1/
     stableDate: !!timestamp 2015-10-06
     iOS: "9.0.1.29"
+    "Visual Studio Extensions": "3.11.1450"
 "Xcode 7.0 Final":
     product: "Xcode"
     version: "7.0"

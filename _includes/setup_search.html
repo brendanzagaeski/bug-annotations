@@ -101,6 +101,10 @@ $(".clear").click(function () {
 $("select").change (function () {
     updateQueryParams ();
 });
+$("#bugs-only").click (function () {
+    $("#bug-filter").prop ("value", "^(Non-public )?\\d+$")
+    filterRows ();
+});
 
 var filterRows = function () {
     $("tr").slice (2).each (function (index) {
