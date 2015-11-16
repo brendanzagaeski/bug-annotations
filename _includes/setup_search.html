@@ -1,16 +1,105 @@
 <script>
+var getBugFilterElements = function () { return $("input.filter,select.filter"); };
+
+var needToReadQueryParams = true;
+var queryParams = {};
+var readQueryParams = function (event) {
+
+    if (!needToReadQueryParams) {
+        needToReadQueryParams = true;
+        return;
+    }
+
+    if (window.location.hash === "") {
+        return;
+    }
+
+    var queryUrlParts = window.location.hash.slice (1).split ("&");
+    if (!queryUrlParts) {
+        return;
+    }
+
+    getBugFilterElements ().filter ("input").val ("");
+    getBugFilterElements ().filter ("select").prop ("selectedIndex", 0);
+
+    $(queryUrlParts).each (function (index) {
+        var parts = this.split ("=");
+        var name = decodeURIComponent (parts [0]) + "-filter";
+        var value = decodeURIComponent (parts [1]);
+        queryParams [name] = value;
+        $("#" + name).each (function (index) {
+            if ($(this).is ("input")) {
+                $(this).val (value);
+            }
+            else {
+                $(this).prop ("selectedIndex", $(this).children ("[value='" + value +"']").index () - 1);
+            }
+        });
+    });
+
+    filterRows ();
+};
+
+$(window).load (readQueryParams);
+$(window).hashchange (readQueryParams);
+
+var updateQueryParams = function () {
+    queryString = $("input,select")
+        .map (inputSelectGetUrlComponent)
+        .toArray ()
+        .join ("&");
+    if (queryString.length > 1) {
+        if (window.location.hash === "#" + queryString) {
+            return;
+        }
+        needToReadQueryParams = false;
+        window.location.hash = queryString;
+    }
+    else {
+        needToReadQueryParams = false;
+        window.location.hash = "";
+    }
+
+    filterRows ();
+};
+
+var inputSelectGetUrlComponent = function (index) {
+    var valueRaw = inputSelectQueryValue (this);
+    if (!valueRaw) {
+        return;
+    }
+    var value = encodeURIComponent (valueRaw);
+    var name = encodeURIComponent (this.id.replace (/-filter$/, ""));
+    return name + "=" + value;
+}
+
+var inputSelectQueryValue = function (element) {
+    if ($(element).is ("input")) {
+        var value = $(element).val ();
+        if (value != "") {
+            return value;
+        }
+    }
+    else {
+        var value = $(element).prop ("selectedIndex");
+        if (value != 0) {
+            return $(element).children (":nth-child(" + (value + 1) +")").attr ("value");
+        }
+    }
+}
+
 $("input").keypress (function (event) {
     if (event.which == 13) {
-        filterRows ();
+        updateQueryParams ();
     }
 });
 $(".clear").click(function () {
     $(this).closest ("td").children ("input").val ("");
     $(this).closest ("td").children ("select").prop ("selectedIndex", 0);
-    filterRows ();
+    updateQueryParams ();
 });
 $("select").change (function () {
-    filterRows ();
+    updateQueryParams ();
 });
 
 var filterRows = function () {
