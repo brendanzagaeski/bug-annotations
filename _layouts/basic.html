@@ -2,8 +2,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/screen.css" type="text/css" />
-    <script src="{{ site.baseurl }}/assets/jquery.js"></script>
+    <link rel="stylesheet" href="{% if page.dir != '/' %}../{% endif %}css/screen.css" type="text/css" />
+    <script src="{% if page.dir != '/' %}../{% endif %}assets/jquery.js"></script>
 </head>
 <body>
 <h1>{{ page.title }}</h1>
