@@ -71,7 +71,7 @@ var inputSelectGetUrlComponent = function (index) {
     var value = encodeURIComponent (valueRaw);
     var name = encodeURIComponent (this.id.replace (/-filter$/, ""));
     return name + "=" + value;
-}
+};
 
 var inputSelectQueryValue = function (element) {
     if ($(element).is ("input")) {
@@ -86,7 +86,7 @@ var inputSelectQueryValue = function (element) {
             return $(element).children (":nth-child(" + (value + 1) +")").attr ("value");
         }
     }
-}
+};
 
 $("input").keypress (function (event) {
     if (event.which == 13) {
@@ -108,27 +108,27 @@ var filterRows = function () {
         var hide = false;
         $(row).children ("td").each (function (index) {
             var cell = this;
-            var bugFilter = ($($("tr.filters").children ("td") [index]).children ().filter ("input, select")) [0];
-            if ($(bugFilter).is ('input')) {
-                if (bugFilter.value == "") {
+            var filterElement = ($($("tr.filters").children ("td") [index]).children ().filter ("input, select")) [0];
+            if ($(filterElement).is ("input")) {
+                if (filterElement.value === "") {
                     return;
                 }
-                var re = new RegExp (bugFilter.value, "i");
+                var re = new RegExp (filterElement.value, "i");
                 if (!re.test ($.trim($(cell).text ()))) {
                     hide = true;
                     return false;
                 }
             }
             else {
-                if (bugFilter.value == "all") {
+                if (filterElement.value === "all") {
                     return;
                 }
                 var released = $(cell).text ().indexOf ("X") > -1;
-                if (bugFilter.value == "fixed" && !released) {
+                if (filterElement.value === "fixed" && !released) {
                     hide = true;
                     return false;
                 }
-                if (bugFilter.value == "open" && released) {
+                if (filterElement.value === "open" && released) {
                     hide = true;
                     return false;
                 }
