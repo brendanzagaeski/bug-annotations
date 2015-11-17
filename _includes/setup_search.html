@@ -32,7 +32,7 @@ var readQueryParams = function (event) {
                 $(this).val (value);
             }
             else {
-                $(this).prop ("selectedIndex", $(this).children ("[value='" + value +"']").index () - 1);
+                $(this).prop ("selectedIndex", $(this).children ("[value='" + value +"']").index ());
             }
         });
     });
