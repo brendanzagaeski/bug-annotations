@@ -91,7 +91,7 @@ tags:
 
 private: false
 product: iOS
-version: XI 9.1 (iOS 9.1)
+version: !!str XI 9.1 (iOS 9.1)
 status: RESOLVED FIXED
 opSys: Windows
 priority: Normal
