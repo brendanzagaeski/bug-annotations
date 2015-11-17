@@ -1,0 +1,1 @@
+{% if goodVersion == nil %}{{ bug.lastGoodVersion | append: " " | markdownify | rstrip }}{% elsif bug.version == "upstream" %}<br />({{ goodVersion.version }}){% comment %}Xamarin Studio handles both "bad" and "good" during "output_bad_version", so we skip it here.{% endcomment %}{% elsif inputProduct != "Xamarin Studio" %}<br />({{ goodVersion[inputProduct] }}){% endif %}

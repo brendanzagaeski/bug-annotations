@@ -1,0 +1,1 @@
+{% if badVersion == nil %}{{ bug.firstBadVersion | append: " " | markdownify | rstrip   }}{% elsif bug.version == "upstream" %}{{ badVersion.product }} {{ badVersion.version }}{% elsif inputProduct == "Xamarin Studio" %}{% include multi_os_goodbad.html %}{% else %}{{ site.data.products[inputProduct] }} {{ badVersion[inputProduct] }}{% endif %}

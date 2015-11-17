@@ -1,1 +1,1 @@
-<ul><li>{% assign input = opSys %}{% capture output %}{% include trunc_three.html %}{% endcapture %}{{ output | strip_newlines }}: {{ badVersion[bug.product][opSys] }}{% if goodVersion %}<br />({{ goodVersion[bug.product][opSys] }}){% endif %}</li></ul>
+<li>{% assign input = opSys %}{% capture output %}{% include trunc_three.html %}{% endcapture %}{{ output | strip_newlines }}: {{ badVersion[inputProduct][opSys] }}{% if goodVersion %}<br />({{ goodVersion[inputProduct][opSys] }}){% else %}{{ bug.lastGoodVersion | append: " " | markdownify | rstrip }}{% endif %}</li>
