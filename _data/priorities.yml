@@ -6,5 +6,8 @@
 Highest: "The issue completely prevents development for several customers."
 High: ""
 Normal: ""
+# An empty priority defaults to "just below normal"
+"": ""
+"---": ""
 Low: ""
 Lowest: ""

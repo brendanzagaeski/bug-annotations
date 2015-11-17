@@ -1,3 +1,8 @@
+div.banner {
+    margin-top: 5ex;
+    margin-bottom: 5ex;
+}
+
 table {
     width: 100%;
     table-layout: fixed;
@@ -35,11 +40,14 @@ table {
         }
 
         td table {
+            width: inherit;
+            table-layout: inherit;
             text-align: center;
         }
             td table td {
                 border: inherit;
                 padding: inherit;
+                padding: 0 0.5em;
             }
 
 

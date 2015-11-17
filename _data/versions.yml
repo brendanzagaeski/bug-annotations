@@ -20,6 +20,7 @@ newFeature:
     betaDate: !!timestamp 2015-10-22
     bugzilla: &bzIos91
         iOS: "XI 9.1 (iOS 9.1)"
+        "Visual Studio Extensions": "3.11 (C5)"
     iOS: "9.1.0.18"
     "Visual Studio Extensions": "4.0.0.1685"
 "iOS 9.1 Stable":
@@ -44,9 +45,23 @@ newFeature:
         "Xamarin Studio": "5.10"
         "Visual Studio Extensions": "4.0 (C6)"
         "Class Libraries": "4.2.0"
+        "iOS": "XI 9.2"
     iOS: "9.2.1.50"
     "Xamarin Studio":
         "Mac OS": "5.10.0.870"
         "Windows": "5.10.0.870"
     "Visual Studio Extensions": "4.0.0.1685"
+    "Class Libraries": "4.2.1.102"
+"Cycle 6 RC 3":
+    url: https://releases.xamarin.com/beta-preview-cycle-6-preview-update-release-candidate-3/
+    betaDate: !!timestamp 2015-11-13
+    bugzilla:
+        "Xamarin Studio": "5.10"
+        "Visual Studio Extensions": "4.0 (C6)"
+        "Class Libraries": "4.2.0"
+    iOS: "9.2.1.51"
+    "Xamarin Studio":
+        "Mac OS": "5.10.0.871"
+        "Windows": "5.10.0.870"
+    "Visual Studio Extensions": "4.0.0.1686"
     "Class Libraries": "4.2.1.102"
