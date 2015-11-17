@@ -61,3 +61,16 @@
         "Windows": "5.10.0.870"
     "Visual Studio Extensions": "4.0.0.1686"
     "Class Libraries": "4.2.1.102"
+"Cycle 6":
+    url: https://releases.xamarin.com/stable-release-cycle-6-final/
+    betaDate: !!timestamp 2015-11-17
+    bugzilla:
+        "Xamarin Studio": "5.10"
+        "Visual Studio Extensions": "4.0 (C6)"
+        "Class Libraries": "4.2.0"
+    iOS: "9.2.1.51"
+    "Xamarin Studio":
+        "Mac OS": "5.10.0.871"
+        "Windows": "5.10.0.871"
+    "Visual Studio Extensions": "4.0.0.1689"
+    "Class Libraries": "4.2.1.102"

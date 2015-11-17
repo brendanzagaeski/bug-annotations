@@ -6,10 +6,11 @@ div.banner {
 table {
     width: 100%;
     table-layout: fixed;
+    border-spacing: 0.2em 1ex;
 }
 
     td {
-        padding: 1em 1ex;
+        padding: 1.4ex 1em;
         border: 2px solid #ddd;
         overflow: hidden;
 
@@ -20,10 +21,12 @@ table {
         /* Reset the alignment after row 3 so that only the first 2 rows are
          * centered */
         text-align: inherit;
+
+        padding: 4ex 1em;
     }
 
         td ul {
-            padding-left: 1em;
+            padding-left: 0.5em;
         }
 
         td input {
