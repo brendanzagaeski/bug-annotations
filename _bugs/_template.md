@@ -82,7 +82,11 @@ tags:
     - iOS
 
 
-# The values for the fields below should exactly match the values from Bugzilla
+# The values for the fields below should exactly match the values from
+# Bugzilla. One exception is that you can adjust the "priority" to change the
+# bug's default sort-order on this website. (The site displays the bugs in
+# descending order of priority. )
+#
 # "opSys" is optional
 
 private: false
@@ -90,5 +94,7 @@ product: iOS
 version: XI 9.1 (iOS 9.1)
 status: RESOLVED FIXED
 opSys: Windows
+priority: Normal
+severity: normal
 targetMilestone: C6SR1
 ---

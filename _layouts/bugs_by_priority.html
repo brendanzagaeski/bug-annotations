@@ -1,0 +1,4 @@
+---
+layout: bugtable
+---
+{% include bug_header_row.html %}{% assign bugs = site.bugs | group_by:"priority" %}{% for priority in site.data.priorities %}{% assign bugSet = bugs | where:"name",priority[0] %}{% comment %}Now reverse the list of items to sort by descending bug number as the secondary sort.{% endcomment %}{% for bug in bugSet[0].items reversed %}{% capture output %}{% assign product = page.product %}{% include {{ page.bugRowInclude }} %}{% endcapture %}{{ output | strip_newlines }}{% endfor %}{% endfor %}

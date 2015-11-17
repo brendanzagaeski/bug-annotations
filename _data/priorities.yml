@@ -1,0 +1,10 @@
+# The top-to-bottom order of fields in this file determines the bug
+# sorting order
+
+# The description strings are currently unused
+
+Highest: "The issue completely prevents development for several customers."
+High: ""
+Normal: ""
+Low: ""
+Lowest: ""

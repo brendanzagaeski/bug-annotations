@@ -34,7 +34,7 @@ table {
             white-space: nowrap;
         }
 
-body > ul > li {
+ul.menu > li {
     font-size: x-large;
     margin-top: 2ex;
 }

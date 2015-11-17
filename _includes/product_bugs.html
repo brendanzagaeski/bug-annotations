@@ -1,1 +1,1 @@
-{% include bug_header_row.html %}{% for bug in site.bugs reversed %}{% if bug.tags contains product or bug.product == product %}{% include bug_row.html %}{% endif %}{% endfor %}
+{% if bug.tags contains product or bug.product == product %}{% include bug_row.html %}{% endif %}

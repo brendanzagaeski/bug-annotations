@@ -1,5 +1,5 @@
 ---
 title: Bug Annotations for Xamarin Cycle 6
-layout: bugtable
+layout: bugs_by_priority
+bugRowInclude: "bug_row_cycle6.html"
 ---
-{% include bug_header_row.html %}{% for bug in site.bugs reversed %}{% if site.data.versions["Cycle 6 RC 2 Beta 1"].bugzilla.[bug.product] == bug.version %}{% include bug_row.html %}{% endif %}{% endfor %}

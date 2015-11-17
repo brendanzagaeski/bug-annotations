@@ -1,5 +1,5 @@
     <tr>
-        <td>{% assign id = bug.path | split: "/" | last | remove: ".md" %}{% unless bug.private %}<a href="https://bugzilla.xamarin.com/show_bug.cgi?id={{ id }}">{% else %}Non-public {% endunless %}{{ id }}{% unless bug.private %}</a>{% endunless %}</td>
+        <td>{% assign id = bug.path | split: "/" | last | remove: ".md" %}{% unless bug.private %}<a href="https://bugzilla.xamarin.com/show_bug.cgi?id={{ id }}">{% else %}Non-public {% endunless %}{{ id }}{% unless bug.private %}</a>{% endunless %}{% if bug.priority %} ({{ bug.priority }}){% endif %}</td>
         <td>
             <ul>
                 {% if bug.tags %}{% assign sortedTags = bug.tags | sort %}{% for tag in sortedTags %}<li>{{ tag }}</li>{% endfor %}{% endif %}
