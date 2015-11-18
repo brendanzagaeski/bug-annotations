@@ -8,5 +8,5 @@
         <td>{{ bug.summaryMarkdown | append: " " | markdownify | rstrip }}{{ bug.workaroundMarkdown | prepend: " " | markdownify | rstrip }}</td>
         <td>{% capture output %}{% include broken_since.html %}{% endcapture %}{{ output | strip_newlines }}</td>
         {% assign releasedNotice = nil %}{% assign channels = "Stable Beta Alpha" | split:" " %}{% for channel in channels %}{% if bug.fixedOn[channel] %}{% if forloop.first %}{% capture releasedNotice %}**RELEASED** to the {{ channel }} Channel.{% endcapture %}{% endif %}<td>X</td>{% else %}<td></td>{% endif %}{% endfor %}
-        <td>{{ releasedNotice | append: " " | append: bug.statusNotesMarkdown | rstrip | append: " " | markdownify | rstrip }}{% assign milestone = nil %}{% if bug.status != "NEEDINFO" %}{% assign milestone = site.data.targetMilestones[bug.targetMilestone] | prepend:" " | rstrip %}{% endif %}{{ site.data.statuses[bug.status] | append: milestone | markdownify }}</td>
+        <td>{{ releasedNotice | append: " " | append: bug.statusNotesMarkdown | rstrip | append: " " | markdownify | rstrip }}{% assign milestone = nil %}{% if bug.status == "RESOLVED FIXED" or bug.status == "VERIFIED FIXED" %}{% assign milestone = site.data.targetMilestones[bug.targetMilestone] | prepend:" " | rstrip %}{% endif %}{{ site.data.statuses[bug.status] | append: milestone | markdownify }}</td>
     </tr>
