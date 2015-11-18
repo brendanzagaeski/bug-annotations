@@ -34,37 +34,44 @@ workaroundMarkdown: "**Workaround**: "
 statusNotesMarkdown: ""
 
 
-# The "first known" named releases:
+# The "Good", "Bad", and "Fixed" versions are the named releases:
 #
 # (a) Before the problem started
 # (b) When the problem first appeared
 # (c) When the fix was included
 #
-# These should be as precise as known, but they do not need to be perfect. For
-# example, for (b) it is not necessary to track back through earlier alpha or
-# beta versions of the same release to see if the bug was present.
+# These should be as precise as possible, but they do not need to be perfect.
+# For example, for (b) it is not necessary to test back through earlier alpha
+# or beta versions of the same release to see if the bug was present.
 #
 # The "named releases" are cataloged in _data/versions.yml. Ideally
 # versions.yml could eventually be deprecated in favor of using the raw live
 # information from the updater service.
 #
+# If the string matches a "named release", then the bug table will
+# automatically fill out the "Broken Since" column with the exact version
+# numbers for the affected product(s).
+#
+# If the string does _not_ match one of the named releases, then it will be
+# processed as Markdown and displayed directly in the "Broken Since" column.
+#
 # If "firstBadVersion" is set to a non-null value, then the issue is known to
 # be a regression.
 
-lastGoodVersion: iOS 9.0
-firstBadVersion: iOS 9.1 Beta 1
+lastGoodVersion: "iOS 9.1 WatchKit Hotfix"
+firstBadVersion: "Cycle 6"
 firstFixedVersion: ""
 
 
 
-# A list of pairs of channel names and booleans. The exact spelling and
-# capitalization of the channel names must not be changed. Each entry is
-# optional (defaulting to "false").
+# The "fixedOn" field is a list that pairs channel names with booleans. The
+# exact spelling and capitalization of the channel names must not be changed.
+# Each entry is optional (and defaults to "false").
 #
-# This might at first seem redundant with "firstFixedVersion", but there are
-# cases where a bug can be fixed on Stable before it is fixed on Beta
-# or Alpha. Also, when tracking bug release status by hand it can be
-# convenient not to have to enter an exact "firstFixedVersion".
+# This might seem redundant with "firstFixedVersion", but there are cases where
+# a bug can be fixed on Stable before it is fixed on Beta or Alpha. Also,
+# setting one of these booleans can be more convenient than specifiying an
+# exact "firstFixedVersion" when entering values by hand.
 
 fixedOn:
     Stable: true

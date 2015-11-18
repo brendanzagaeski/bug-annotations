@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Bug Entry Helper</title>
+    <link rel="stylesheet" href="css/screen.css" type="text/css" />
+    <script src="assets/jquery.js"></script>
+</head>
+<body>
+
+<h1>Bug Entry Helper</h1>
+
+<ol>
+    <li>
+        <p><a href="https://bugzilla.xamarin.com/query.cgi">Search in Bugzilla</a> for the bug(s) you wish to convert. You can search for just one bug or multiple bugs. For example you can search by bug number:</p>
+        <p><a href="images/BugNumberSearchBugzilla.png" target="_blank"><img alt="The &quot;Detailed Bug Information&quot; section of the Advanced Bugzilla Search page, inlcuding &quot;Bugs numbered&quot;" src="images/BugNumberSearchBugzilla.png" width="746" height="142" /></a></p>
+    </li>
+    <li>
+        <p>Click the "XML" button at the bottom of the bug list to view the XML version of the list:</p>
+        <a href="images/BugListXmlBugzilla.png"><img alt="The XML export button at the bottom of the &quot;buglist.cgi&quot; page, between the &quot;Long Format&quot; and &quot;Time Summary&quot; buttons" src="images/BugListXmlBugzilla.png" width="396" height="130" /></a>
+        <p>(You could instead use the XML link on an individual bug page, but that XML can get quite large because it includes the content of every attachment on the bug. The output of the XML button on the "buglist.cgi" page is easier to work with because it omits the content of the attachments.)
+    </li>
+    <li>
+        <p>Use the web browser to view the source of the resulting page. This is important because some browsers will by default automatically unescape XML escape characters like <code>&amp;amp;</code> when displaying the results page, and that will break the XML parsing in step 5.</p>
+        <ul>
+            <li>Firefox: Tools -&gt; Web Developer -&gt; Page Source</li>
+            <li>Chrome: View -&gt; Developer -&gt; View Source</li>
+            <li>Internet Explorer: View -&gt; Source</li>
+            <li><i>etc</i>.</li>
+        </ul>
+    </li>
+    <li>
+        <p>Copy the contents of the source page and paste it here:</p>
+        <p><textarea cols="100" rows="12" id="input"></textarea></p>
+    </li>
+    <li>
+        <p>Click this button: <button id="generate-yaml">Convert to YAML</button></p>
+    </li>
+    <li>
+        <p>Now copy the generated YAML below (including the "---" lines) into new files under <a href="https://github.com/brendanzagaeski/bug-annotations/tree/gh-pages/_bugs"><code>_bugs/NNNNN.md</code></a>, where the name of each file precisely matches the bug number. Split each bug into its own file. See the comments in the <a href="https://raw.githubusercontent.com/brendanzagaeski/bug-annotations/gh-pages/_bugs/_template.md"><code>_template.md</code></a> file for more information about the the various field names.</p>
+        <pre id="output"></pre>
+    </li>
+</ol>
+
+<script type="text/javascript">
+    $("button").click (function () {
+        var xml = $("textarea#input").val ();
+        var $bugs = $($.parseXML(xml.substr (xml.indexOf ("<bugzilla"))));
+        var result = $bugs.find ("bug").map (function (index) {
+            var x = "---\n# " + $(this).find ("bug_id").text () + ".md" + "\n" +
+                "summaryMarkdown: |\n    " +
+                    $(this).find ("short_desc")
+                        .text ()
+                        .replace (/(\[|\])/g,"\\$1") + "\n\n" +
+
+                '# workaroundMarkdown: "**Workaround**: "\n\n' +
+
+                '# statusNotesMarkdown: ""\n\n' +
+
+                '# lastGoodVersion: "iOS 9.1 WatchKit Hotfix"\n' +
+                '# firstBadVersion: "Cycle 6"\n' +
+                '# firstFixedVersion: ""\n\n' +
+
+                '# fixedOn:\n' +
+                '#     Stable: true\n' +
+                '#     Beta: true\n' +
+                '#     Alpha: true\n\n' +
+
+                '# tags:\n' +
+                '#     - XamarinVS\n' +
+                '#     - iOS\n\n' +
+
+                "private: "  + ($(this).find ("group").text () == "Xamarin Team") + "\n" +
+                "product: "  + '"' + $(this).find ("product").text () + '"' + "\n" +
+                "version: "  + $(this).find ("version").text () + "\n" +
+                "status: "   + $(this).find ("bug_status").text () +
+                        (" " + $(this).find ("resolution").text ()).replace (/ $/, "") + "\n" +
+                "opSys: "    + $(this).find ("op_sys").text () + "\n" +
+                "priority: " + $(this).find ("priority").text () + "\n" +
+                "severity: " + $(this).find ("bug_severity").text () + "\n" +
+                "targetMilestone: " + $(this).find ("target_milestone").text () + "\n---\n";
+            return x;
+        });
+        $("pre#output").text (result.toArray ().join ("\n\n"));
+    });
+</script>
