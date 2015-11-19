@@ -25,6 +25,16 @@ table.buglist {
         padding: 4ex 1em;
     }
 
+        tr.filters input.filter.error {
+            border-color: red;
+        }
+
+        tr.filters p.error {
+            color: maroon;
+            padding: 2px;
+            margin: 0;
+        }
+
         td ul {
             padding-left: 0.5em;
         }
@@ -40,6 +50,10 @@ table.buglist {
         td button {
             margin-top: 1ex;
             white-space: nowrap;
+        }
+
+        td button + button {
+            margin-top: 0.5ex;
         }
 
         /* Styling for nested tables */
