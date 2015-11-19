@@ -107,7 +107,7 @@ $("#bugs-only").click (function () {
 });
 
 var filterRows = function () {
-    $("table.buglist").find ("tr").slice (2).each (function (index) {
+    $("table.buglist").find ("tr").not ("table table tr").slice (2).each (function (index) {
         var row = this;
         var hide = false;
         $(row).children ("td").each (function (index) {
