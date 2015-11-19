@@ -168,10 +168,16 @@ var filterRows = function () {
 var splitRegexesWithGrouping = function (re) {
 
     var escapeOn = false;
-    var quoteOn = false;
-    var doubleQuoteOn = false;
+    var pairedDelimiters = [
+        { start: "\"", end: "\"", on: false },
+        { start: "'", end: "'", on: false },
+        { start: "“", end: "”", on: false},
+        { start: "‘", end: "’", on: false},
+    ];
+    var lastDelimiter = null;
     var regexes = [];
     var current = "";
+    var skip = false;
 
     re.split ("").forEach (function (character, index) {
         if (escapeOn) {
@@ -180,31 +186,39 @@ var splitRegexesWithGrouping = function (re) {
             return;
         }
 
-        switch (character) {
-        case "\\":
+        if (character === "\\") {
             escapeOn = true;
-            break;
-        case "\"":
-            if (!quoteOn && !escapeOn) {
-                doubleQuoteOn = !doubleQuoteOn;
+            return;
+        }
+
+        skip = false;
+
+        pairedDelimiters.forEach (function (pair) {
+            if (character === (pair.on ? pair.end : pair.start)
+                && !pairedDelimiters.some (function (otherPair) {
+                    return (otherPair !== pair && otherPair.on)
+                })) {
+
+                pair.on = !pair.on;
+
+                skip = true;
             }
-            break;
-        case "'":
-            if (!doubleQuoteOn && !escapeOn) {
-                quoteOn = !quoteOn;
-            }
-            break;
-        case " ":
-            if (!quoteOn && !doubleQuoteOn && !escapeOn) {
+        });
+
+        if (skip) { return }
+
+        if (character === " "
+            && !pairedDelimiters.some (function (pair) {
+                return (pair.on)
+            })) {
                 if (current !== "") {
-                    regexes.push (current);
+                    var result = current;
+                    regexes.push (result);
                     current = "";
                 }
-                break;
-            }
-        default:
-            current += character;
+            return;
         }
+        current += character;
     });
 
     if (current !== "") {
