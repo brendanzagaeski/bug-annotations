@@ -3,7 +3,7 @@ div.banner {
     margin-bottom: 5ex;
 }
 
-table {
+table.buglist {
     width: 100%;
     table-layout: fixed;
     border-spacing: 0.2em 1ex;
@@ -17,7 +17,7 @@ table {
         text-align: center;
     }
 
-    tr + tr + tr td {
+    tr + tr + tr > td {
         /* Reset the alignment after row 3 so that only the first 2 rows are
          * centered */
         text-align: inherit;
@@ -42,16 +42,12 @@ table {
             white-space: nowrap;
         }
 
-        td table {
-            width: inherit;
-            table-layout: inherit;
-            text-align: center;
+        /* Styling for nested tables */
+        td table td {
+            border: inherit;
+            padding: 0 0.5em;
+            text-align: inherit;
         }
-            td table td {
-                border: inherit;
-                padding: inherit;
-                padding: 0 0.5em;
-            }
 
 
 ul.menu > li {
@@ -59,4 +55,4 @@ ul.menu > li {
     margin-top: 2ex;
 }
 
-p.footer { margin-top: 10em }
+p.footer { margin-top: 20ex }
