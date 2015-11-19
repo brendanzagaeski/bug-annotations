@@ -46,11 +46,13 @@
         var xml = $("textarea#input").val ();
         var $bugs = $($.parseXML(xml.substr (xml.indexOf ("<bugzilla"))));
         var result = $bugs.find ("bug").map (function (index) {
-            var x = "---\n# " + $(this).find ("bug_id").text () + ".md" + "\n" +
-                "summaryMarkdown: |\n    " +
+            var x = '---\n# ' + $(this).find ("bug_id").text () + '.md' + '\n' +
+                'summaryMarkdown: |\n    ' +
                     $(this).find ("short_desc")
                         .text ()
-                        .replace (/(\[|\])/g,"\\$1") + "\n\n" +
+                        .replace (/^(\r\n|\r|\n)*/m, "")
+                        .replace (/(\r\n|\r|\n)*$/m, "")
+                        .replace (/^(\[[^\]]*\])*/, "") + '\n\n' +
 
                 '# workaroundMarkdown: "**Workaround**: "\n\n' +
 
@@ -66,18 +68,18 @@
                 '#     Alpha: true\n\n' +
 
                 '# tags:\n' +
-                '#     - XamarinVS\n' +
-                '#     - iOS\n\n' +
+                '#     - "XamarinVS"\n' +
+                '#     - "iOS"\n\n' +
 
-                "private: "  + ($(this).find ("group").text () == "Xamarin Team") + "\n" +
-                "product: "  + '"' + $(this).find ("product").text () + '"' + "\n" +
-                "version: "  + $(this).find ("version").text () + "\n" +
-                "status: "   + $(this).find ("bug_status").text () +
-                        (" " + $(this).find ("resolution").text ()).replace (/ $/, "") + "\n" +
-                "opSys: "    + $(this).find ("op_sys").text () + "\n" +
-                "priority: " + $(this).find ("priority").text () + "\n" +
-                "severity: " + $(this).find ("bug_severity").text () + "\n" +
-                "targetMilestone: " + $(this).find ("target_milestone").text () + "\n---\n";
+                'private: "'  + ($(this).find ('group').text () == 'Xamarin Team') + '"\n' +
+                'product: "' + $(this).find ('product').text () + '"\n' +
+                'version: "' + $(this).find ('version').text () + '"\n' +
+                'status: "'  + $(this).find ('bug_status').text () +
+                        (' ' + $(this).find ('resolution').text ()).replace (/ $/, '') + '"\n' +
+                'opSys: "'    + $(this).find ('op_sys').text () + '"\n' +
+                'priority: "' + $(this).find ('priority').text () + '"\n' +
+                'severity: "' + $(this).find ('bug_severity').text () + '"\n' +
+                'targetMilestone: "' + $(this).find ('target_milestone').text () + '"\n---\n';
             return x;
         });
         $("pre#output").text (result.toArray ().join ("\n\n"));
