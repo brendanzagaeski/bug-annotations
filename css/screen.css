@@ -3,6 +3,11 @@ div.banner {
     margin-bottom: 5ex;
 }
 
+blockquote {
+    border-left: 4px solid lightgray;
+    padding-left: 1em;
+}
+
 table.buglist {
     width: 100%;
     table-layout: fixed;

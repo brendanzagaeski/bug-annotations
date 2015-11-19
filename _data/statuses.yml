@@ -3,3 +3,5 @@
 "IN_PROGRESS": Under investigation.
 "CONFIRMED": Under investigation.
 "NEW": Under investigation.
+"NEEDINFO":
+    Awaiting additional information from the original bug reporter or one of the other people CC'd on the bug report.
