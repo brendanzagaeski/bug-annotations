@@ -191,6 +191,7 @@ var splitRegexesWithGrouping = function (re) {
 
         if (character === "\\") {
             escapeOn = true;
+            current += "\\";
             return;
         }
 
