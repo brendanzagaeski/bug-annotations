@@ -36,6 +36,8 @@ var readQueryParams = function (event) {
         });
     });
 
+    ga ("send", "pageview", window.location.pathname + "?" + window.location.hash.slice (1));
+
     filterRows ();
 };
 
@@ -53,6 +55,7 @@ var updateQueryParams = function () {
         }
         needToReadQueryParams = false;
         window.location.hash = queryString;
+        ga ("send", "pageview", window.location.pathname + "?" + queryString);
     }
     else {
         needToReadQueryParams = false;
